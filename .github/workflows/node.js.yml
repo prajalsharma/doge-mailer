@@ -8,10 +8,10 @@ on:
   workflow_dispatch: 
 
 env:
-   USER_EMAIL = ${{ secrets.USER_EMAIL }}
-   USER_PASSWORD = ${{ secrets.USER_PASSWORD }}
-   EMAIL_FROM = ${{ secrets.EMAIL_FROM }}
-   EMAIL_TO = ${{ secrets.EMAIL_TO }}
+   USER_EMAIL : ${{ secrets.USER_EMAIL }}
+   USER_PASSWORD : ${{ secrets.USER_PASSWORD }}
+   EMAIL_FROM : ${{ secrets.EMAIL_FROM }}
+   EMAIL_TO : ${{ secrets.EMAIL_TO }}
 
 
 
