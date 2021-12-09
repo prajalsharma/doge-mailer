@@ -5,6 +5,8 @@ const nodemailer = require("nodemailer");
 (async function run() {
     console.log("doge mailer is running")
 
+    //Using API for fetching Crypto Price
+
     const url = await fetch( `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=${process.env.COINMARKETCAP_API_KEY} `)
     const pricing = await url.json();
 
@@ -20,6 +22,15 @@ const nodemailer = require("nodemailer");
     
     const coin4price = pricing.data[12].quote.USD.price;
     const percent_change_oneday3 = pricing.data[12].quote.USD.percent_change_24h;
+
+    // Using API to fetch GIF
+
+    const GIF_url= await fetch ( ` https://g.tenor.com/v1/search?q=doge&key=${process.env.TENOR_API_KEY}`);
+    const gif = await GIF_url.json();
+
+    const final_GIF = gif.results[0].media[0].tinygif.url;
+
+
 
 
     const transporter = nodemailer.createTransport({
@@ -42,19 +53,23 @@ const nodemailer = require("nodemailer");
         html: `
         <h1>Your Daily Crypto Mail</h1>
         <h2> Last Updated date and time of your Crypto : ${last_updated_date}</h2>
-        <h3> Bitcoin [BTC] </h3>
-        <p> USD Price : ${coin1price} </p>
-        <p> Percentage Change in one day : ${percent_change_oneday}</p>
+        <h2> Bitcoin <b>[BTC]</b></h2>
+        <p> Price : $${coin1price} USD </p>
+        <p> Percentage Change in one day :${percent_change_oneday}</p>
 
-        <h4> Etherium [ETH]</h4>
-        <p> USD Price : ${coin2price} </p>
+        <h2> Etherium <b>[ETH]</b></h2>
+        <p> Price :$${coin2price} USD </p>
         <p> Percentage Change in one day : ${percent_change_oneday1}</p>
-        <h5> Dogecoin [DOGE] </h5>
-        <p> USD Price : ${coin3price} </p>
+        <h2> Dogecoin <b>[DOGE]</b> </h2>
+        <p> Price : $${coin3price} USD </p>
         <p> Percentage Change in one day : ${percent_change_oneday2}</p>
-        <h6> Shiba Inu [SHIB]</h6>
-        <p> USD Price : ${coin4price} </p>
+        <h2> Shiba Inu <b>[SHIB]</b></h2>
+        <p> Price : $${coin4price} USD </p>
         <p> Percentage Change in one day : ${percent_change_oneday3}</p>
+
+        <p> <img src="${final_GIF}"/></p>
+
+
 
 
 
