@@ -13,6 +13,7 @@ env:
    EMAIL_FROM : ${{ secrets.EMAIL_FROM }}
    EMAIL_TO : ${{ secrets.EMAIL_TO }}
    COINMARKETCAP_API_KEY : ${{ secrets.API_KEY}}
+   TENOR_API_KEY : ${{secrets.TENOR_API_KEY}}
 
 
 
