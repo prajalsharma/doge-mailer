@@ -13,6 +13,8 @@ This project uses Nodemailer and CoinMarketCap API with github actions to automa
 
 In my project I used [Cron](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#scheduled-events) to automate the sending of email everyday . It was fairly easy to use for beginners as well . Before this, I had to look somewhere else to automate things like these but now it can be done in your github which saves a lot of time .
 
+![This is the cron use screenshot](https://github.com/prajalsharma/doge-mailer/blob/main/src/Screenshot%20(209).png)
+
 Then I used [NodeMailer](https://www.npmjs.com/package/nodemailer) which carried out the task of sending mails whenever the program runs. 
 
 In the end I used the [CoinMarketCap API](https://coinmarketcap.com/api/documentation/v1/#section/Quick-Start-Guide) to retrieve and send the Cryptocurrency data through mail.
@@ -53,6 +55,8 @@ COINMARKETCAP_API_KEY = This is the API key of the [CoinMarketCap API](https://c
 
 
 # Working Samples
+
+![ Automated email screenshot](https://github.com/prajalsharma/doge-mailer/blob/main/src/IMG_20211209_104738.jpg)
 
 
 # Future updates 
