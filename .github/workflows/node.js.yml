@@ -12,6 +12,7 @@ env:
    USER_PASSWORD : ${{ secrets.USER_PASSWORD }}
    EMAIL_FROM : ${{ secrets.EMAIL_FROM }}
    EMAIL_TO : ${{ secrets.EMAIL_TO }}
+   COINMARKETCAP_API_KEY : ${{ secrets.API_KEY}}
 
 
 
