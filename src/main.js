@@ -1,8 +1,26 @@
 require('dotenv').config()
+const fetch = require('node-fetch');
 const nodemailer = require("nodemailer");
 
 (async function run() {
     console.log("doge mailer is running")
+
+    const url = await fetch( `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=${process.env.COINMARKETCAP_API_KEY} `)
+    const pricing = await url.json();
+
+    const coin1price = pricing.data[0].quote.USD.price;
+    const percent_change_oneday = pricing.data[0].quote.USD.percent_change_24h;
+    const last_updated_date = pricing.data[0].last_updated;
+
+    const coin2price = pricing.data[1].quote.USD.price;
+    const percent_change_oneday1 = pricing.data[1].quote.USD.percent_change_24h;
+    
+    const coin3price = pricing.data[10].quote.USD.price;
+    const percent_change_oneday2 = pricing.data[10].quote.USD.percent_change_24h;
+    
+    const coin4price = pricing.data[12].quote.USD.price;
+    const percent_change_oneday3 = pricing.data[12].quote.USD.percent_change_24h;
+
 
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -19,10 +37,27 @@ const nodemailer = require("nodemailer");
         to: process.env.EMAIL_TO, // list of receivers
         subject: " Daily Doge Mail", // Subject line
         text: `
-        yOUR daily Crypto mail
+        Your Daily Crypto Mail
         `, // plain text body
         html: `
-        <b>Your Daily Crypto Mail</b>
+        <h1>Your Daily Crypto Mail</h1>
+        <h2> Last Updated date and time of your Crypto : ${last_updated_date}</h2>
+        <h3> Bitcoin [BTC] </h3>
+        <p> USD Price : ${coin1price} </p>
+        <p> Percentage Change in one day : ${percent_change_oneday}</p>
+
+        <h4> Etherium [ETH]</h4>
+        <p> USD Price : ${coin2price} </p>
+        <p> Percentage Change in one day : ${percent_change_oneday1}</p>
+        <h5> Dogecoin [DOGE] </h5>
+        <p> USD Price : ${coin3price} </p>
+        <p> Percentage Change in one day : ${percent_change_oneday2}</p>
+        <h6> Shiba Inu [SHIB]</h6>
+        <p> USD Price : ${coin4price} </p>
+        <p> Percentage Change in one day : ${percent_change_oneday3}</p>
+
+
+
         `, // html body
       });
 })();
